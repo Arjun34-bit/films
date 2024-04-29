@@ -1,0 +1,68 @@
+.parent-card {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  width: 18%;
+  height: 81%;
+  margin: 1rem 2rem;
+  background-blend-mode: overlay;
+  background-color: #ffffff;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.movie_information {
+  height: 25%;
+  margin: 0rem;
+}
+
+.title {
+  text-align: center;
+}
+
+.movie_img {
+  object-fit: cover;
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.95),
+      rgba(255, 255, 255, 0.5)
+    ),
+    radial-gradient(
+      circle at top left,
+      rgba(255, 255, 255, 0.95),
+      transparent 100%
+    ),
+    radial-gradient(
+      circle at top right,
+      rgba(255, 255, 255, 0.95),
+      transparent 100%
+    ),
+    radial-gradient(
+      circle at bottom left,
+      rgba(255, 255, 255, 0.95),
+      transparent 100%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(255, 255, 255, 0.95),
+      transparent 100%
+    );
+  background-blend-mode: overlay;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.languages {
+  width: 20%;
+  padding: 2px 4px;
+  background-color: silver;
+  border-radius: 5px;
+  border: 1px solid gold;
+  margin: 5px 5px;
+}
+
+.values {
+}
