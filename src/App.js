@@ -10,6 +10,7 @@ import data from "./data/data.json";
 import Portal from "./Portal/Portal.jsx";
 function App() {
   const [movies, setMovies] = useState(data);
+  const [filteredMovies, setFilteredMovies] = useState(data);
   const [page, setPage] = useState(1);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -68,17 +69,46 @@ function App() {
     setSelectedLanguages([]);
     setSelectedGenres([]);
     setSelectedCountries([]);
+    setFilteredMovies(data);
+
+    setTimeout(() => {
+      setIsOpen(false);
+      console.log(isOpen);
+    }, 100);
   };
 
   const handleApplyFilters = () => {
-    // Apply filters based on selectedLanguages, selectedGenres, selectedCountries
-    console.log("Languages:", selectedLanguages);
-    console.log("Genres:", selectedGenres);
-    console.log("Countries:", selectedCountries);
+    const result = movies.filter((movie) => {
+      return (
+        (!selectedLanguages.length ||
+          selectedLanguages.every((lang) =>
+            movie.movielanguages.includes(lang)
+          )) &&
+        (!selectedGenres.length ||
+          selectedGenres.every((genre) => movie.moviegenres.includes(genre))) &&
+        (!selectedCountries.length ||
+          selectedCountries.every((country) =>
+            movie.moviecountries.includes(country)
+          ))
+      );
+    });
+
+    setFilteredMovies(result);
+    setTimeout(() => {
+      setIsOpen(false);
+      console.log(isOpen);
+    }, 100);
   };
+
   const handlePagination = (pgs) => {
     setPage(pgs);
   };
+
+  const openModal = (e) => {
+    setIsOpen(true);
+  };
+
+  useEffect(() => {}, filteredMovies);
   return (
     <>
       <div className="header">
@@ -93,7 +123,7 @@ function App() {
       </div>
       <div className="pagination-bar">
         <div className="filter-btn">
-          <button onClick={() => setIsOpen(true)} className="btn">
+          <button onClick={openModal} className="btn">
             <FaFilter />
             filter
             <Portal open={isOpen} onClose={() => setIsOpen(false)}>
@@ -148,8 +178,12 @@ function App() {
                 </div>
               </div>
               <div className="bottom-btn">
-                <button onClick={handleClearAll}>Clear All</button>
-                <button onClick={handleApplyFilters}>Apply</button>
+                <button onClick={handleClearAll} className="clear-btn">
+                  Clear All and Close
+                </button>
+                <button onClick={handleApplyFilters} className="apply-btn">
+                  Apply
+                </button>
               </div>
             </Portal>
           </button>
@@ -169,7 +203,7 @@ function App() {
       <div className="main">
         <div className="inner-box">
           <div className="card-container">
-            {movies.slice(page * 10 - 10, page * 10).map((movie) => (
+            {filteredMovies.slice(page * 10 - 10, page * 10).map((movie) => (
               <MovieComponenet data={movie} />
             ))}
           </div>

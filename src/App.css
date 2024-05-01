@@ -113,6 +113,24 @@
   margin: 2rem 0rem;
 }
 
+.clear-btn {
+  border: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: blue;
+  color: white;
+}
+
+.apply-btn {
+  border: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: green;
+  color: white;
+}
+
 @media (max-width: 768px) {
   .header {
     display: flex;

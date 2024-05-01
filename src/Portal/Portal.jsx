@@ -28,14 +28,13 @@ export default function Portal({ open, children, onClose }) {
     return null;
   }
   return ReactDOM.createPortal(
-    <>
-      <div style={overlay_style}>
-        <div style={modalStyles}>
-          <button onClick={onClose}>Close</button>
-          {children}
-        </div>
+    <div style={overlay_style}>
+      <div className="portal_container" onClick={onClose}></div>
+      <div style={modalStyles}>
+        {/* <button onClick={onClose}>Close</button> */}
+        {children}
       </div>
-    </>,
+    </div>,
     document.getElementById("portal")
   );
 }
